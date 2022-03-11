@@ -55,7 +55,7 @@ public class UserRepository : BaseRepository, IUserRepository
     {
         var query = $@"SELECT * FROM ""{TableNames.user}"" 
         WHERE user_id = @UserId";
-        // SQL-Injection
+
 
         using (var con = NewConnection)
             return await con.QuerySingleOrDefaultAsync<User>(query, new { UserId });

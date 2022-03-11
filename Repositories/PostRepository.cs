@@ -57,9 +57,9 @@ public class PostRepository : BaseRepository, IPostRepository
         LEFT JOIN {TableNames.post} p ON p.post_id = hp.post_id
         WHERE hash_id = @HashId";
 
-        
+
         using (var con = NewConnection)
-           return (await con.QueryAsync<PostDTO>(query, new {HashId})).AsList();
+            return (await con.QueryAsync<PostDTO>(query, new { HashId })).AsList();
     }
 
     public async Task<List<PostDTO>> GetAllForUser(long UserId)
@@ -68,14 +68,14 @@ public class PostRepository : BaseRepository, IPostRepository
         WHERE user_id = @UserId";
 
         using (var con = NewConnection)
-            return (await con.QueryAsync<PostDTO>(query,new {UserId})).AsList();
+            return (await con.QueryAsync<PostDTO>(query, new { UserId })).AsList();
     }
 
     public async Task<Post> GetById(long PostId)
     {
         var query = $@"SELECT * FROM ""{TableNames.post}"" 
         WHERE post_id = @PostId";
-        // SQL-Injection
+
 
         using (var con = NewConnection)
             return await con.QuerySingleOrDefaultAsync<Post>(query, new { PostId });
