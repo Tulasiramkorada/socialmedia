@@ -29,7 +29,7 @@ public record Post
         PostTitle = PostTitle,
         PostDate = PostDate,
         UserId = UserId,
-        Type = PostType
+        PostType = PostType
 
 
     };

@@ -27,7 +27,6 @@ public class LikeRepository : BaseRepository, ILikeRepository
     public async Task<Like> Create(Like Item)
     {
         var query = $@"INSERT INTO ""{TableNames.like}"" 
-        (like_id, user_id, post_id) 
         VALUES (@LikeId, @UserId, @PostId) 
         RETURNING *";
 
@@ -67,9 +66,12 @@ public class LikeRepository : BaseRepository, ILikeRepository
 
     }
 
-    public Task<Like> GetById(int Id)
+    public async Task<Like> GetById(int like_id)
     {
-        throw new NotImplementedException();
+        var query = $@"SELECT * FROM ""{TableNames.like}"" WHERE like_id = @like_id";
+
+        using (var con = NewConnection)
+            return await con.QuerySingleOrDefaultAsync<Like>(query, new { like_id });
     }
 
     public Task<List<Like>> GetList()
@@ -81,6 +83,14 @@ public class LikeRepository : BaseRepository, ILikeRepository
     {
         throw new NotImplementedException();
     }
+
+    // async Task<Like> ILikeRepository.GetById(long like_id)
+    // {
+    //     var query = $@"SELECT * FROM {TableNames.like} WHERE like_id = @like_id";
+
+    //     using (var con = NewConnection)
+    //         return await con.QuerySingleOrDefaultAsync<Like>(query, new { like_id });
+    // }
 
 
 

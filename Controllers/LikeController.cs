@@ -30,6 +30,7 @@ public class LikeController : ControllerBase
 
         var toCreateLike = new Like
         {
+            LikeId = Data.LikeId,
             UserId = Data.UserId,
             PostId = Data.PostId
 
@@ -37,7 +38,7 @@ public class LikeController : ControllerBase
 
         var createdLike = await _like.Create(toCreateLike);
 
-        return StatusCode(StatusCodes.Status201Created, createdLike.asDto);
+        return null;//StatusCode(StatusCodes.Status201Created, createdLike.asDto);
     }
 
 
@@ -45,7 +46,7 @@ public class LikeController : ControllerBase
 
 
     [HttpDelete("{like_id}")]
-    public async Task<ActionResult> DeleteLike([FromRoute] long like_id)
+    public async Task<ActionResult> DeleteLike([FromRoute] int like_id)
     {
         var existing = await _like.GetById(like_id);
         if (existing is null)

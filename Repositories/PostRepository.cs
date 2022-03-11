@@ -29,7 +29,7 @@ public class PostRepository : BaseRepository, IPostRepository
     {
         var query = $@"INSERT INTO public.""{TableNames.post}"" 
         (post_title, post_date, user_id,post_type) 
-        VALUES (@PostTitle, @Postdate, @UserId, @Type) 
+        VALUES (@PostTitle, @Postdate, @UserId, @PostType) 
         RETURNING *";
 
         using (var con = NewConnection)

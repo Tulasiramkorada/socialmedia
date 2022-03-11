@@ -53,7 +53,7 @@ public class UserController : ControllerBase
             UserName = Data.UserName.Trim(),
             Password = Data.Password.Trim(),
             MailId = Data.MailId.Trim().ToLower(),
-            Mobile = Data.Mobile,
+            ContactNumber = Data.Mobile,
         };
 
         var createdUser = await _User.Create(toCreateUser);
@@ -61,7 +61,7 @@ public class UserController : ControllerBase
         return StatusCode(StatusCodes.Status201Created, createdUser.asDto);
     }
 
-    [HttpPut("{userid}")]
+    [HttpPut("{user_id}")]
     public async Task<ActionResult> UpdateUser([FromRoute] long user_id,
     [FromBody] UserUpdateDTO Data)
     {
@@ -74,7 +74,7 @@ public class UserController : ControllerBase
             Password = Data.Password?.Trim()?.ToLower() ?? existing.Password,
             MailId = Data.MailId?.Trim()?.ToLower() ?? existing.MailId,
             UserName = Data.LastName?.Trim() ?? existing.UserName,
-            Mobile = Data.Mobile,
+            ContactNumber = Data.Mobile,
 
         };
 

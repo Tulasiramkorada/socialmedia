@@ -13,7 +13,7 @@ public record User
     public string UserName { get; set; }
     public string Password { get; set; }
     public string MailId { get; set; }
-    public long Mobile { get; set; }
+    public long ContactNumber { get; set; }
 
 
     /// <summary>
@@ -23,11 +23,11 @@ public record User
 
     public UserDTO asDto => new UserDTO
     {
-
+        UserId = UserId,
         UserName = UserName,
         Password = Password,
         MailId = MailId,
-        Mobile = Mobile,
+        Mobile = ContactNumber,
 
 
     };

@@ -26,8 +26,7 @@ public class HashRepository : BaseRepository, IHashRepository
     public async Task<Hash> Create(Hash Item)
     {
         var query = $@"INSERT INTO ""{TableNames.hash}"" 
-        (hash_id, hash_name, user_id,type) 
-        VALUES (@HashName, @UserId) 
+        VALUES (@HashId,@HashName) 
         RETURNING *";
 
         using (var con = NewConnection)
@@ -74,7 +73,7 @@ public class HashRepository : BaseRepository, IHashRepository
 
     public async Task<bool> Update(Hash Item)
     {
-        var query = $@"UPDATE ""{TableNames.hash}"" SET hash_name = @HashName, 
+        var query = $@"UPDATE ""{TableNames.hash}"" SET hash_name = @HashName 
           WHERE hash_id = @HashId";
 
         using (var con = NewConnection)

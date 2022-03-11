@@ -18,7 +18,7 @@ public record PostDTO
     public long UserId { get; set; }
 
     [JsonPropertyName("post_type")]
-    public string Type { get; set; }
+    public string PostType { get; set; }
     public List<LikeDTO> Like { get; internal set;}
 
 

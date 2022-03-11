@@ -26,7 +26,7 @@ public class UserRepository : BaseRepository, IUserRepository
     public async Task<User> Create(User Item)
     {
         var query = $@"INSERT INTO public.""user""(user_name, password, mail_id, contact_number)
-	VALUES (@UserName, @Password, @Email, @Mobile) 
+	VALUES (@UserName, @Password, @MailId, @ContactNumber) 
         RETURNING *";
 
         //INSERT INTO public."user"(
@@ -78,7 +78,7 @@ public class UserRepository : BaseRepository, IUserRepository
     public async Task<bool> Update(User Item)
     {
         var query = $@"UPDATE ""{TableNames.user}"" SET user_name = @UserName,password = @Password,
-         mail_id = @MailId, contact_number = @Mobile WHERE user_id = @UserId";
+         mail_id = @MailId, contact_number = @ContactNumber WHERE user_id = @UserId";
 
         using (var con = NewConnection)
         {
